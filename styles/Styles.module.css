@@ -1,0 +1,16 @@
+.btnBlues {
+  background: #3586ff;
+  color: #ffffff;
+  border-radius: 28px;
+}
+
+.btnBlues:hover {
+  background: none;
+  border: 1px solid #3586ff;
+  color: #3586ff;
+}
+
+.auth:focus {
+  border-color: #3586ff;
+  box-shadow: none;
+}
