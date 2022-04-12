@@ -22,10 +22,10 @@ export default function login() {
                     <div className="col-lg-4">
                       <h1 style={{ color: "#4A94FC", fontWeight: "700" }}>Hallo</h1>
                       <div className="mb-3">
-                        <input type="email" className={`form-control ${styles.auth}`} id="email" placeholder="Email" />
+                        <input type="email" className={`form-control ${styles.auth}`} id="email" placeholder="Email" required />
                       </div>
                       <div className="mb-3">
-                        <input type="password" className={`form-control ${styles.auth}`} id="email" placeholder="Password" />
+                        <input type="password" className={`form-control ${styles.auth}`} id="password" placeholder="Password" required />
                       </div>
                       <div className="d-flex">
                         <button className={`ms-auto btn ${styles.btnBlues}`} style={{ borderRadius: "10px", width: "167px" }}>
@@ -35,7 +35,7 @@ export default function login() {
                     </div>
                     <div className="col-lg-4">
                       <div className="col-lg-4 d-flex justify-content-center order-sm-1">
-                        <Image src={"https://i.ibb.co/fC4S86z/logo.png"} width={337} height={337} layout="fixed" />
+                        <Image src={"https://i.ibb.co/fC4S86z/logo.png"} width={250} height={250} layout="fixed" />
                       </div>
                     </div>
                   </div>

@@ -3,8 +3,31 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import Image from "next/image";
 import Head from "next/head";
 import styles from "../styles/Styles.module.css";
+import { useRouter } from "next/router";
 
 export default function register() {
+  const router = useRouter();
+  const createAccount = async () => {
+    fetch("http://8.219.11.61:8080/users", {
+      method: "POST",
+      body: JSON.stringify({
+        name: document.getElementById("name").value,
+        email: document.getElementById("email").value,
+        password: document.getElementById("password").value,
+        city: document.getElementById("city").value,
+        url_image: document.getElementById("image").value,
+      }),
+      headers: { "Content-Type": "application/json" },
+    })
+      .then(() => {
+        alert("Account has created");
+        router.push("/login");
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
   return (
     <main role="main">
       <Head>
@@ -22,22 +45,22 @@ export default function register() {
                     <div className="col-lg-4">
                       <h1 style={{ color: "#4A94FC", fontWeight: "700" }}>Hallo</h1>
                       <div className="mb-3">
-                        <input type="text" className={`form-control ${styles.auth}`} id="name" placeholder="Name" />
+                        <input type="text" className={`form-control ${styles.auth}`} id="name" placeholder="Name" required />
                       </div>
                       <div className="mb-3">
-                        <input type="email" className={`form-control ${styles.auth}`} id="email" placeholder="Email" />
+                        <input type="email" className={`form-control ${styles.auth}`} id="email" placeholder="Email" required />
                       </div>
                       <div className="mb-3">
-                        <input type="password" className={`form-control ${styles.auth}`} id="email" placeholder="Password" />
+                        <input type="password" className={`form-control ${styles.auth}`} id="password" placeholder="Password" required />
                       </div>
                       <div className="mb-3">
-                        <input type="text" className={`form-control ${styles.auth}`} id="city" placeholder="City" />
+                        <input type="text" className={`form-control ${styles.auth}`} id="city" placeholder="City" required />
                       </div>
                       <div className="mb-3">
                         <input type="text" className={`form-control ${styles.auth}`} id="image" placeholder="URL Profile Image" />
                       </div>
                       <div className="d-flex">
-                        <button className={`ms-auto btn ${styles.btnBlues}`} style={{ borderRadius: "10px", width: "167px" }}>
+                        <button className={`ms-auto btn ${styles.btnBlues}`} style={{ borderRadius: "10px", width: "167px" }} onClick={() => createAccount()}>
                           Register
                         </button>
                       </div>
