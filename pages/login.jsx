@@ -58,7 +58,7 @@ export default function login() {
                     </div>
                     <div className="col-lg-4">
                       <div className="col-lg-4 d-flex justify-content-center order-sm-1">
-                        <Image src={"https://i.ibb.co/fC4S86z/logo.png"} width={250} height={250} layout="fixed" />
+                        <Image src={"https://i.ibb.co/fC4S86z/logo.png"} layout="fill" />
                       </div>
                     </div>
                   </div>
