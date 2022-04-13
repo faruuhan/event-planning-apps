@@ -1,10 +1,12 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
+import Link from "next/link";
 import Layout from "../components/Layout";
 import Image from "next/image";
 import styles from "../styles/Styles.module.css";
+import { AuthContext } from "../utils/Context";
 
 export async function getServerSideProps() {
-  const resDataEvent = await fetch("http://8.219.11.61:8080/events");
+  const resDataEvent = await fetch("https://syuruqoutfit.store/events");
   const dataEvent = await resDataEvent.json();
 
   return {
@@ -16,8 +18,22 @@ export async function getServerSideProps() {
 
 export default function Homepage({ dataEvent }) {
   const [getDataEvent, setDataEvent] = useState(dataEvent.data);
+  const auth = useContext(AuthContext);
 
-  console.log(getDataEvent);
+  const joinEvent = (events) => {
+    fetch(`https://syuruqoutfit.store/attendees/${events.id}`, {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${auth.data.token}`,
+      },
+    })
+      .then(() => {
+        alert("Success join event");
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
 
   return (
     <Layout>
@@ -50,10 +66,12 @@ export default function Homepage({ dataEvent }) {
                         <Image src={"https://i.ibb.co/Z2TCGbh/istockphoto-1147544807-612x612.jpg"} width={174} height={151} />
                       </div>
                       <div className="col-lg">
-                        <h2>{events.name_event}</h2>
+                        <Link href={`/event/${events.id}`}>
+                          <h2>{events.name_event}</h2>
+                        </Link>
                         <p>Sabtu, 16 Agustus 2022 @ 16.00 WIB</p>
                         <p>Hosted by {events.hosted_by}</p>
-                        <button className={`btn ${styles.btnBlues}`} style={{ width: "102px" }}>
+                        <button className={`btn ${styles.btnBlues}`} style={{ width: "102px" }} onClick={() => joinEvent(events)}>
                           Join
                         </button>
                       </div>
