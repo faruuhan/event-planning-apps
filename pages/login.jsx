@@ -19,7 +19,7 @@ export default function login() {
     })
       .then((response) => response.json())
       .then((result) => {
-        localStorage.setItem("authEvent", JSON.stringify([result]));
+        localStorage.setItem("authEvent", JSON.stringify(result));
         alert("login success");
         router.push("/");
       })
@@ -58,7 +58,7 @@ export default function login() {
                     </div>
                     <div className="col-lg-4">
                       <div className="col-lg-4 d-flex justify-content-center order-sm-1">
-                        <Image src={"https://i.ibb.co/fC4S86z/logo.png"} layout="fill" />
+                        <Image src={"https://i.ibb.co/fC4S86z/logo.png"} height={350} width={350} />
                       </div>
                     </div>
                   </div>
