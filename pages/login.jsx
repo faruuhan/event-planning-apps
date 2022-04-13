@@ -9,7 +9,7 @@ export default function login() {
   const router = useRouter();
 
   const loginAccount = () => {
-    fetch("http://8.219.11.61:8080/login", {
+    fetch("https://syuruqoutfit.store/login", {
       method: "POST",
       body: JSON.stringify({
         email: document.getElementById("email").value,

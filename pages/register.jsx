@@ -8,7 +8,7 @@ import { useRouter } from "next/router";
 export default function register() {
   const router = useRouter();
   const createAccount = async () => {
-    fetch("http://8.219.11.61:8080/users", {
+    fetch("https://syuruqoutfit.store/users", {
       method: "POST",
       body: JSON.stringify({
         name: document.getElementById("name").value,

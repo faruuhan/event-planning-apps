@@ -6,7 +6,7 @@ import styles from "../styles/Styles.module.css";
 import { AuthContext } from "../utils/Context";
 
 export async function getServerSideProps() {
-  const resDataEvent = await fetch("http://8.219.11.61:8080/events");
+  const resDataEvent = await fetch("https://syuruqoutfit.store/events");
   const dataEvent = await resDataEvent.json();
 
   return {
@@ -20,7 +20,20 @@ export default function Homepage({ dataEvent }) {
   const [getDataEvent, setDataEvent] = useState(dataEvent.data);
   const auth = useContext(AuthContext);
 
-  console.log(auth.data.token);
+  const joinEvent = (events) => {
+    fetch(`https://syuruqoutfit.store/attendees/${events.id}`, {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${auth.data.token}`,
+      },
+    })
+      .then(() => {
+        alert("Success join event");
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
 
   return (
     <Layout>
@@ -58,7 +71,7 @@ export default function Homepage({ dataEvent }) {
                         </Link>
                         <p>Sabtu, 16 Agustus 2022 @ 16.00 WIB</p>
                         <p>Hosted by {events.hosted_by}</p>
-                        <button className={`btn ${styles.btnBlues}`} style={{ width: "102px" }}>
+                        <button className={`btn ${styles.btnBlues}`} style={{ width: "102px" }} onClick={() => joinEvent(events)}>
                           Join
                         </button>
                       </div>

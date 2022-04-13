@@ -5,7 +5,7 @@ import { FaAngleDoubleRight } from "react-icons/fa";
 import styles from "../../styles/Styles.module.css";
 
 export async function getServerSideProps(context) {
-  const resDataEvent = await fetch(`http://8.219.11.61:8080/events/${context.params.id}`);
+  const resDataEvent = await fetch(`https://syuruqoutfit.store/events/${context.params.id}`);
   const dataEvent = await resDataEvent.json();
 
   return {
@@ -18,7 +18,21 @@ export async function getServerSideProps(context) {
 export default function DetailEvent({ dataEvent }) {
   const [getDataEvent, setDataEvent] = useState(dataEvent.data);
 
-  console.log(getDataEvent);
+  const joinEvent = (events) => {
+    fetch(`https://syuruqoutfit.store/attendees/${events.id}`, {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${auth.data.token}`,
+      },
+    })
+      .then(() => {
+        alert("Success join event");
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
   return (
     <Layout>
       <div className="container">
@@ -36,7 +50,7 @@ export default function DetailEvent({ dataEvent }) {
                     <p>
                       Hosted by {getDataEvent.hosted_by} - {getDataEvent.location}
                     </p>
-                    <button className={`btn ${styles.btnBlues}`} style={{ width: "102px" }}>
+                    <button className={`btn ${styles.btnBlues}`} style={{ width: "102px" }} onClick={() => joinEvent(events)}>
                       Join
                     </button>
                   </div>
