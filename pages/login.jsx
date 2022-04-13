@@ -3,8 +3,31 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import Image from "next/image";
 import Head from "next/head";
 import styles from "../styles/Styles.module.css";
+import { useRouter } from "next/router";
 
 export default function login() {
+  const router = useRouter();
+
+  const loginAccount = () => {
+    fetch("http://8.219.11.61:8080/login", {
+      method: "POST",
+      body: JSON.stringify({
+        email: document.getElementById("email").value,
+        password: document.getElementById("password").value,
+      }),
+      headers: { "Content-Type": "application/json" },
+    })
+      .then((response) => response.json())
+      .then((result) => {
+        localStorage.setItem("authEvent", JSON.stringify([result]));
+        alert("login success");
+        router.push("/");
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
   return (
     <main role="main">
       <Head>
@@ -28,14 +51,14 @@ export default function login() {
                         <input type="password" className={`form-control ${styles.auth}`} id="password" placeholder="Password" required />
                       </div>
                       <div className="d-flex">
-                        <button className={`ms-auto btn ${styles.btnBlues}`} style={{ borderRadius: "10px", width: "167px" }}>
+                        <button className={`ms-auto btn ${styles.btnBlues}`} style={{ borderRadius: "10px", width: "167px" }} onClick={() => loginAccount()}>
                           Login
                         </button>
                       </div>
                     </div>
                     <div className="col-lg-4">
                       <div className="col-lg-4 d-flex justify-content-center order-sm-1">
-                        <Image src={"https://i.ibb.co/fC4S86z/logo.png"} width={250} height={250} layout="fixed" />
+                        <Image src={"https://i.ibb.co/fC4S86z/logo.png"} layout="fill" />
                       </div>
                     </div>
                   </div>
