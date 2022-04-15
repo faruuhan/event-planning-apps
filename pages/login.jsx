@@ -3,11 +3,8 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import Image from "next/image";
 import Head from "next/head";
 import styles from "../styles/Styles.module.css";
-import { useRouter } from "next/router";
 
 export default function login() {
-  const router = useRouter();
-
   const loginAccount = () => {
     fetch("https://syuruqoutfit.store/login", {
       method: "POST",
@@ -21,7 +18,7 @@ export default function login() {
       .then((result) => {
         localStorage.setItem("authEvent", result.data.token);
         alert("login success");
-        router.push("/");
+        window.location.href = "/";
       })
       .catch((err) => {
         console.log(err);

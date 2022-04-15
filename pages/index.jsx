@@ -63,12 +63,14 @@ export default function Homepage({ dataEvent }) {
                   <div className="card-body">
                     <div className="row">
                       <div className="col-lg-2">
-                        <Image src={"https://i.ibb.co/Z2TCGbh/istockphoto-1147544807-612x612.jpg"} width={174} height={151} />
+                        <Link href={`/event/${events.id}`}>
+                          <a>
+                            <Image src={"https://i.ibb.co/Z2TCGbh/istockphoto-1147544807-612x612.jpg"} width={174} height={151} />
+                          </a>
+                        </Link>
                       </div>
                       <div className="col-lg">
-                        <Link href={`/event/${events.id}`}>
-                          <h2>{events.name_event}</h2>
-                        </Link>
+                        <h2>{events.name_event}</h2>
                         <p>Sabtu, 16 Agustus 2022 @ 16.00 WIB</p>
                         <p>Hosted by {events.hosted_by}</p>
                         <button className={`btn ${styles.btnBlues}`} style={{ width: "102px" }} onClick={() => joinEvent(events)}>
