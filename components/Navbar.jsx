@@ -1,8 +1,10 @@
-import React from "react";
+import React, { useContext } from "react";
 import { FaUser } from "react-icons/fa";
 import Image from "next/image";
+import { AuthContext } from "../utils/Context";
 
 export default function Navbar() {
+  const auth = useContext(AuthContext);
   return (
     <nav className="navbar navbar-expand-lg navbar-light bg-transparent py-4">
       <div className="container">
@@ -16,9 +18,20 @@ export default function Navbar() {
         </button>
         <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
           <div className="navbar-nav ms-auto">
-            <a className="nav-link active" aria-current="page" href="#">
-              <FaUser size={25} />
-            </a>
+            {auth ? (
+              <a className="nav-link active" aria-current="page" href="/eventmy">
+                <FaUser size={25} />
+              </a>
+            ) : (
+              <>
+                <a className="nav-link" href="/login">
+                  Login
+                </a>
+                <a className="nav-link" href="/register">
+                  Register
+                </a>
+              </>
+            )}
           </div>
         </div>
       </div>
