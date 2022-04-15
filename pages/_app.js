@@ -3,10 +3,10 @@ import "../styles/globals.css";
 import { AuthContext } from "../utils/Context";
 
 function MyApp({ Component, pageProps }) {
-  const [auth, setAuth] = useState({});
+  const [auth, setAuth] = useState("");
 
   useEffect(() => {
-    const auth = JSON.parse(localStorage.getItem("authEvent"));
+    const auth = localStorage.getItem("authEvent");
     setAuth(auth);
   }, []);
 

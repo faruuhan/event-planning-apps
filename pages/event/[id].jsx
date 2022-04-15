@@ -24,7 +24,7 @@ export default function DetailEvent({ dataEvent }) {
     fetch(`https://syuruqoutfit.store/attendees/${events.id}`, {
       method: "POST",
       headers: {
-        Authorization: `Bearer ${auth.data.token}`,
+        Authorization: `Bearer ${auth}`,
       },
     })
       .then(() => {
@@ -42,7 +42,7 @@ export default function DetailEvent({ dataEvent }) {
         comment: document.getElementById("comment").value,
       }),
       headers: {
-        Authorization: `Bearer ${auth.data.token}`,
+        Authorization: `Bearer ${auth}`,
         "Content-Type": "application/json",
       },
     })

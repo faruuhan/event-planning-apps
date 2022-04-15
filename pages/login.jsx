@@ -19,7 +19,7 @@ export default function login() {
     })
       .then((response) => response.json())
       .then((result) => {
-        localStorage.setItem("authEvent", JSON.stringify(result));
+        localStorage.setItem("authEvent", result.data.token);
         alert("login success");
         router.push("/");
       })

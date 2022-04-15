@@ -24,7 +24,7 @@ export default function Homepage({ dataEvent }) {
     fetch(`https://syuruqoutfit.store/attendees/${events.id}`, {
       method: "POST",
       headers: {
-        Authorization: `Bearer ${auth.data.token}`,
+        Authorization: `Bearer ${auth}`,
       },
     })
       .then(() => {
