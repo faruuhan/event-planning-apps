@@ -15,7 +15,6 @@ export default function register() {
         email: document.getElementById("email").value,
         password: document.getElementById("password").value,
         city: document.getElementById("city").value,
-        url_image: document.getElementById("image").value,
       }),
       headers: { "Content-Type": "application/json" },
     })
