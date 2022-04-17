@@ -67,11 +67,11 @@ export default function DetailEvent({ dataEvent }) {
               <div className="card-body">
                 <div className="row">
                   <div className="col-lg-2">
-                    <Image src={"https://i.ibb.co/Z2TCGbh/istockphoto-1147544807-612x612.jpg"} width={174} height={151} />
+                    <Image src={getDataEvent.url_image} width={174} height={151} />
                   </div>
                   <div className="col-lg">
                     <h2>{getDataEvent.name_event}</h2>
-                    <p>Sabtu, 16 Agustus 2022 @ 16.00 WIB</p>
+                    <p>{getDataEvent.date}</p>
                     <p>
                       Hosted by {getDataEvent.hosted_by} - {getDataEvent.location}
                     </p>
