@@ -57,9 +57,6 @@ export default function register() {
                       <div className="mb-3">
                         <input type="text" className={`form-control ${styles.auth}`} id="city" placeholder="City" required />
                       </div>
-                      <div className="mb-3">
-                        <input type="text" className={`form-control ${styles.auth}`} id="image" placeholder="URL Profile Image" />
-                      </div>
                       <div className="d-flex">
                         <button className={`ms-auto btn ${styles.btnBlues}`} style={{ borderRadius: "10px", width: "167px" }} onClick={() => createAccount()}>
                           Register
