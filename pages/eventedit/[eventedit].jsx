@@ -1,20 +1,25 @@
 import React, { useState, useContext } from "react";
-import Layout from "../components/Layout";
-import styles from "../styles/Styles.module.css";
-import { AuthContext } from "../utils/Context";
+import Layout from "../../components/Layout";
+import styles from "../../styles/Styles.module.css";
+import { AuthContext } from "../../utils/Context";
 
-export async function getServerSideProps() {
+export async function getServerSideProps(context) {
   const resDataCategory = await fetch(`https://syuruqoutfit.store/catagories`);
   const dataCategory = await resDataCategory.json();
+  const resDataEvent = await fetch(`https://syuruqoutfit.store/events/${context.params.id}`);
+  const dataEvent = await resDataEvent.json();
+  
+  console.log(context);
 
   return {
     props: {
+      dataEvent,
       dataCategory,
     },
   };
 }
 
-export default function eventadd({ dataCategory }) {
+export default function eventedit({ dataCategory, dataEvent }) {
   const auth = useContext(AuthContext);
   const [festivalName, setFestivalName] = useState("");
   const [dateAndTime, setDateAndTime] = useState("");
@@ -25,11 +30,13 @@ export default function eventadd({ dataCategory }) {
   const [addImage, setAddImage] = useState("");
   const [categories] = useState(dataCategory.data);
 
+  console.log(dataEvent);
+
   const handleSubmit = (e) => {
     e.preventDefault;
 
-    fetch(`https://syuruqoutfit.store/events`, {
-      method: "POST",
+    fetch(`https://syuruqoutfit.store/events/${dataEvent.id}`, {
+      method: "PUT",
       body: JSON.stringify({
         name_event: festivalName,
         catagory_id: parseInt(category),
@@ -59,12 +66,12 @@ export default function eventadd({ dataCategory }) {
         <div className="row d-flex justify-content-center border-bottom border-dark">
           <div className="col-4 d-flex justify-content-center">
             <h5>
-              <b>Add Event</b>
+              <b>Edit Event</b>
             </h5>
           </div>
         </div>
       </div>
-
+      
       {/* line */}
       <div className="container mt-4">
         <div className="row">
