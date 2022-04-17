@@ -31,6 +31,7 @@ export default function DetailEvent({ dataEvent }) {
         alert("Success join event");
       })
       .catch((err) => {
+        alert("Join Event Failed or Need Access Login");
         console.log(err);
       });
   };
@@ -48,8 +49,11 @@ export default function DetailEvent({ dataEvent }) {
     })
       .then((ress) => {
         console.log(ress);
+        alert("success post comment!");
+        location.reload();
       })
       .catch((err) => {
+        alert("failed post comment or need access login");
         console.log(err);
       });
   };

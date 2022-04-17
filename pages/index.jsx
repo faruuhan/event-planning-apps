@@ -32,6 +32,7 @@ export default function Homepage({ dataEvent }) {
       })
       .catch((err) => {
         console.log(err);
+        alert("Join Event Failed or Need Access Login");
       });
   };
 
