@@ -3,6 +3,7 @@ import Layout from "../../components/Layout";
 import Image from "next/image";
 import { FaAngleDoubleRight } from "react-icons/fa";
 import styles from "../../styles/Styles.module.css";
+import moment from "moment";
 import { AuthContext } from "../../utils/Context";
 
 export async function getServerSideProps(context) {
@@ -71,7 +72,7 @@ export default function DetailEvent({ dataEvent }) {
                   </div>
                   <div className="col-lg">
                     <h2>{getDataEvent.name_event}</h2>
-                    <p>{getDataEvent.date}</p>
+                    <p>{moment(getDataEvent.date).format("LLLL")}</p>
                     <p>
                       Hosted by {getDataEvent.hosted_by} - {getDataEvent.location}
                     </p>

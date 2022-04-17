@@ -3,6 +3,7 @@ import Link from "next/link";
 import Layout from "../components/Layout";
 import Image from "next/image";
 import styles from "../styles/Styles.module.css";
+import moment from "moment";
 import { AuthContext } from "../utils/Context";
 
 export async function getServerSideProps() {
@@ -73,7 +74,7 @@ export default function Homepage({ dataEvent }) {
                           </div>
                           <div className="col-lg">
                             <h2>{events.name_event}</h2>
-                            <p>{events.date}</p>
+                            <p>{moment(events.date).format("LLLL")}</p>
                             <p>Hosted by {events.hosted_by}</p>
                             <button className={`btn ${styles.btnBlues}`} style={{ width: "102px" }} onClick={() => joinEvent(events)}>
                               Join
