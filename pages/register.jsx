@@ -15,7 +15,6 @@ export default function register() {
         email: document.getElementById("email").value,
         password: document.getElementById("password").value,
         city: document.getElementById("city").value,
-        url_image: document.getElementById("image").value,
       }),
       headers: { "Content-Type": "application/json" },
     })
@@ -24,6 +23,7 @@ export default function register() {
         router.push("/login");
       })
       .catch((err) => {
+        alert("Account cannot create");
         console.log(err);
       });
   };
@@ -55,9 +55,6 @@ export default function register() {
                       </div>
                       <div className="mb-3">
                         <input type="text" className={`form-control ${styles.auth}`} id="city" placeholder="City" required />
-                      </div>
-                      <div className="mb-3">
-                        <input type="text" className={`form-control ${styles.auth}`} id="image" placeholder="URL Profile Image" />
                       </div>
                       <div className="d-flex">
                         <button className={`ms-auto btn ${styles.btnBlues}`} style={{ borderRadius: "10px", width: "167px" }} onClick={() => createAccount()}>

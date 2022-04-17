@@ -8,7 +8,7 @@ export default function Navbar() {
   return (
     <nav className="navbar navbar-expand-lg navbar-light bg-transparent py-4">
       <div className="container">
-        <a className="navbar-brand" href="">
+        <a className="navbar-brand" href="/">
           <div className="col-lg-4 d-flex justify-content-center order-sm-1">
             <Image src={"https://i.ibb.co/fC4S86z/logo.png"} width={150} height={150} />
           </div>

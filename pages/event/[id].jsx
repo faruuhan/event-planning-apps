@@ -3,6 +3,7 @@ import Layout from "../../components/Layout";
 import Image from "next/image";
 import { FaAngleDoubleRight } from "react-icons/fa";
 import styles from "../../styles/Styles.module.css";
+import moment from "moment";
 import { AuthContext } from "../../utils/Context";
 
 export async function getServerSideProps(context) {
@@ -31,6 +32,7 @@ export default function DetailEvent({ dataEvent }) {
         alert("Success join event");
       })
       .catch((err) => {
+        alert("Join Event Failed or Need Access Login");
         console.log(err);
       });
   };
@@ -48,8 +50,11 @@ export default function DetailEvent({ dataEvent }) {
     })
       .then((ress) => {
         console.log(ress);
+        alert("success post comment!");
+        location.reload();
       })
       .catch((err) => {
+        alert("failed post comment or need access login");
         console.log(err);
       });
   };
@@ -63,11 +68,11 @@ export default function DetailEvent({ dataEvent }) {
               <div className="card-body">
                 <div className="row">
                   <div className="col-lg-2">
-                    <Image src={"https://i.ibb.co/Z2TCGbh/istockphoto-1147544807-612x612.jpg"} width={174} height={151} />
+                    <Image src={getDataEvent.url_image} width={174} height={151} />
                   </div>
                   <div className="col-lg">
                     <h2>{getDataEvent.name_event}</h2>
-                    <p>Sabtu, 16 Agustus 2022 @ 16.00 WIB</p>
+                    <p>{moment(getDataEvent.date).format("LLLL")}</p>
                     <p>
                       Hosted by {getDataEvent.hosted_by} - {getDataEvent.location}
                     </p>
