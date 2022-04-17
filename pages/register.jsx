@@ -24,6 +24,7 @@ export default function register() {
         router.push("/login");
       })
       .catch((err) => {
+        alert("Account cannot create");
         console.log(err);
       });
   };
