@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import Layout from "../components/Layout";
 import Image from "next/image";
+import moment from "moment";
 import styles from "../styles/Styles.module.css";
 
 export default function myevent() {
@@ -66,7 +67,7 @@ export default function myevent() {
                     <h2>{getUser.name}</h2>
                     <p>{getUser.email}</p>
                     <p>{getUser.city}</p>
-                    <a href="" className={`btn ${styles.btnBlues}`} style={{ width: "115px" }}>
+                    <a href="/useredit" className={`btn ${styles.btnBlues}`} style={{ width: "115px" }}>
                       Edit Profile
                     </a>
                     <a href="/eventadd" className={`btn ${styles.btnBlues}`} style={{ width: "102px" }}>
@@ -107,7 +108,7 @@ export default function myevent() {
                           </div>
                           <div className="col-lg">
                             <h2>{events.name_event}</h2>
-                            <p>{events.date}</p>
+                            <p>{moment(events.date).format("LLLL")}</p>
                             <p>
                               Hosted {events.hosted_by} - {events.location}
                             </p>
