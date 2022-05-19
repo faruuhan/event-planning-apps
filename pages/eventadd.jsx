@@ -14,7 +14,7 @@ export async function getServerSideProps() {
   };
 }
 
-export default function eventadd({ dataCategory }) {
+export default function EventAdd({ dataCategory }) {
   const auth = useContext(AuthContext);
   const [festivalName, setFestivalName] = useState("");
   const [dateAndTime, setDateAndTime] = useState("");
